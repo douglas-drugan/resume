@@ -207,6 +207,12 @@ body {
     line-height: 1.6;
 }
 
+.job-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
 .project-tech {
     display: flex;
     flex-wrap: wrap;
@@ -404,5 +410,119 @@ body {
 
     .section-title {
         font-size: 1.5rem;
+    }
+}
+
+.experience-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.experience-main {
+    flex: 2;
+}
+
+.experience-skills {
+    flex: 0.25;
+    /* min-width: 200px; */
+}
+
+.experience-skills h5 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 3px;
+}
+
+.experience-skills .job-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    row-gap: 0.25rem;
+}
+
+.experience-skills .tech-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+    background: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Print setup for better PDF layout */
+@page {
+    size: Letter;
+    margin: 0.55in;
+}
+
+/* Consolidated and optimized print styles */
+@media print {
+    /* Configurable print variables for quick tuning */
+    :root {
+        --print-header-padding: 26px;
+        --print-name-size: 2rem;
+        --print-skill-col-width: 125px;
+        --print-section-gap: 22px;
+        --print-item-gap: 16px;
+        --print-contact-gap: 28px; /* new: spacing between contact items in print */
+    }
+
+    /* Base */
+    body { background: #ffffff !important; }
+    .container { box-shadow: none !important; max-width: none !important; min-height: auto !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    /* Tighter overall spacing */
+    .header { padding: var(--print-header-padding) !important; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important; color: #ffffff !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+    .main-content { padding: var(--print-header-padding) !important; }
+    .section { margin-bottom: var(--print-section-gap) !important; }
+    .experience-item { break-inside: auto !important; page-break-inside: auto !important; margin-bottom: var(--print-item-gap) !important; }
+    .experience-details li { margin-bottom: 5px !important; }
+    p, li { orphans: 2; widows: 2; }
+
+    /* Prevent link URL tails globally */
+    a[href]::after { content: '' !important; }
+
+    /* Header layout + compact typography */
+    .header-content { display: table !important; width: 100% !important; table-layout: fixed !important; break-inside: avoid !important; }
+    .profile-section { display: table-cell !important; width: 62% !important; vertical-align: top !important; padding-right: 20px !important; break-inside: avoid !important; }
+    .contact-info { display: table-cell !important; width: 33% !important; vertical-align: top !important; text-align: left !important; gap: 10px !important; break-inside: avoid !important; padding-top: 10px !important; }
+    .profile-img { width: 110px !important; height: 110px !important; border: 4px solid rgba(255, 255, 255, 0.2) !important; }
+    .name { font-size: var(--print-name-size) !important; line-height: 1.15 !important; color: #ffffff !important; }
+    .title { font-size: 1.1rem !important; color: #3498db !important; }
+    .subtitle { font-size: 0.95rem !important; color: rgba(255,255,255,0.85) !important; }
+    .contact-item { color: #ffffff !important; }
+    .contact-info .contact-item { align-items: flex-start !important; margin-bottom: var(--print-contact-gap) !important; line-height: 1.3 !important; }
+    .contact-info .contact-item:last-child { margin-bottom: 0 !important; }
+    .contact-item i { color: #3498db !important; margin-top: 2px !important; }
+    .header a, .header a:visited { color: #ffffff !important; text-decoration: none !important; }
+
+    /* Experience layout preserved with table for reliability */
+    .experience-content { display: table !important; width: 100% !important; table-layout: fixed !important; break-inside: auto !important; }
+    .experience-content::after { content: none !important; display: none !important; }
+    .experience-main { display: table-cell !important; width: auto !important; padding-right: 1rem !important; vertical-align: top !important; break-inside: avoid !important; }
+    .experience-skills { display: table-cell !important; width: var(--print-skill-col-width) !important; vertical-align: top !important; break-inside: avoid !important; }
+
+    /* Technical skills section preserved, slightly condensed */
+    .skills-grid { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important; gap: 16px !important; }
+    .skill { background: linear-gradient(135deg, #3498db, #2980b9) !important; color: #ffffff !important; padding: 6px 10px !important; border-radius: 22px !important; font-size: 0.78rem !important; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .experience-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .experience-skills .job-tech {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 }
